@@ -1,0 +1,13 @@
+# Rule for Lenovo ultraslim combo
+
+ACTION!="add", GOTO="lenovo_keyboard_rules_end"
+
+SUBSYSTEM=="usb_device", GOTO="lenovo_keyboard_usb_begin"
+SUBSYSTEM=="usb", KERNEL!="*:*", GOTO="lenovo_keyboard_usb_begin"
+GOTO="lenovo_keyboard_rules_end"
+
+LABEL="lenovo_keyboard_usb_begin"
+
+ATTRS{idVendor}=="17ef", ATTRS{idProduct}=="609b", RUN+="/bin/bash /usr/local/bin/lenovo_keyboard.sh &"
+
+LABEL="lenovo_keyboard_rules_end"
